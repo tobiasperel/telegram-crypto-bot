@@ -6,7 +6,7 @@ import buscarCrypto
 import apiCoingecko
 from create_database import *
 # configuraciones del bot
-token = '1902593010:AAGl1Uoh_LDzj_7qu-Ror3jAQcUzQ2zmCjo'
+token = ''
 
 bot = telegram.Bot(token=token)
 
