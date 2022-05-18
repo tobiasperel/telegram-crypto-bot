@@ -15,7 +15,7 @@ c = conn.cursor()
 cg = CoinGeckoAPI()
 
 
-token = '1902593010:AAGl1Uoh_LDzj_7qu-Ror3jAQcUzQ2zmCjo'
+token = ''
 
 bot = telegram.Bot(token=token)
 

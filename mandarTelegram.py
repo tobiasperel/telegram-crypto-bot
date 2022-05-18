@@ -4,8 +4,8 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
 #configuraciones del bot
-token = '1902593010:AAGl1Uoh_LDzj_7qu-Ror3jAQcUzQ2zmCjo'
-chat_id = '1094333353'
+token = ''
+chat_id = ''
 bot = telegram.Bot(token=token)
 #------------------------------
 

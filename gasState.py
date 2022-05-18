@@ -7,7 +7,7 @@ import sqlite3
 from create_database import convertirTablaADiccionario
 
 
-token = '1902593010:AAGl1Uoh_LDzj_7qu-Ror3jAQcUzQ2zmCjo'
+token = ''
 
 conn = sqlite3.connect('database.db')
 c = conn.cursor()

@@ -11,7 +11,7 @@ cg = CoinGeckoAPI()
 conn = sqlite3.connect('database.db')
 c = conn.cursor()
 
-token = '1156537678:AAG9MWA6APVAjfODTVZDovFbTr11dW-LtwU'
+token = ''
 
 bot = telegram.Bot(token=token)
 

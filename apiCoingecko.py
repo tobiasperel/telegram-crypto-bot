@@ -5,7 +5,6 @@ import plotly.graph_objects as go
 from pprint import pprint as print
 cg = CoinGeckoAPI()
 import reloj
-#print(cg.get_coins_list())
 
 def graficarCoin(coin,dias):
     coin = getCoinId(coin)
@@ -29,7 +28,6 @@ def graficarCoin(coin,dias):
 
     fig.update_layout(xaxis_rangeslider_visible=False)
     fig.write_image("fig1.png")
-    #fig.show()
     return fig
 
 

@@ -11,7 +11,7 @@ from pprint import pprint as print
 import time
 import reloj
 cg = CoinGeckoAPI()
-token = '1902593010:AAGl1Uoh_LDzj_7qu-Ror3jAQcUzQ2zmCjo'
+token = ''
 bot = telegram.Bot(token=token)
 
 
@@ -64,5 +64,3 @@ def investigarYmandarPrecioConCantidad(id,coin,cantidad,quiereGrafico,dias):
         return True
     except:
         return False
-
-#investigarYmandarPrecio('805954751','bitcoin')

@@ -141,4 +141,3 @@ def convertirTablaADiccionario(cursor, tabla, relevant=1):
 
 print("Opened database successfully")
 iniciarTabla(c)
-# print(convertirTablaADiccionario(c,"datos"))
