@@ -1,0 +1,117 @@
+DATOS = {1273599396: [1, None, None, 5, 0, 1, 1, 'medium', 30]}
+
+
+
+PROGRAMAS QUE CORREN ->
+- comandos.py
+- **gasState.py
+- **sacarPrecio.py
+- **newCrypto.py
+
+- comandos.py -> principal, corre los comandos de telegram
+    - llama a varios programas
+
+    - start -> startea el bot
+        - muestra info
+        - te agrega en todos los diccionarios necesarios, si no estas
+    - allow_graphic -> togglea el grafico (tenes que poner enable/disable)
+    - reset_bot -> pregunta por si o no para resetear
+    - confirmacion_reset_finish -> en caso de ser yes, te pone todo de fábrica en los archivos.
+    - info_on / info_off -> habilita y desabilita los mensajes
+    
+    - gasTracker_handle -> agarra gases de resultados.txt y los manda lindo
+    - level -> le pones el gas requerido y el tipo de gas. lo guarda en datos.txt
+    - ubi -> te tira el precio del ubi
+    - ubi_monthly -> te tira el precio del ubi*720
+    - ubi_monthly_alert -> precio minimo que tiene que estar el ubi*720 para que te avise
+    - time -> seteas el tiempo para las notificaciones
+    - coin -> le tiras una crypto y te trae el precio
+    - coin_min_max -> le das una cripto con el minimo y el maximo y te avisa si está por debajo del minimo o por encima del maximo. Te lo guarda en datosCrypto.txt
+    - coin_min_max_remove -> te saca el coin_min_max
+    - setDaysGraph -> le tiras a cuantos dias queres el grafico, se guarda en datos.txt
+    - my_portfolio -> te tira que criptos tenes, en base a datosCrypto.txt
+    - convert -> le tiras una cantidad de cripto y te lo pasa a dolares
+    - send_message -> funcion magica para mandar mensajes a un usuario
+    - lista -> funcion magica. tira el ID y nombre de la gente en base a gente.txt
+    - bot_code -> tira textito con el link del codigo del bot
+    - donations -> tira billeteras para donar 
+    - contact_us -> para contactar
+    - info -> tira todos los comandos
+    - confirmacion_reset -> "el bot no fue resetado"
+    - noSuchCommand -> no existe el comando
+
+
+- gasState.py -> mediante una API te trae los 3 tipos de gases, que guarda en resultados.txt
+    - en base al reloj y tiempo futuro
+
+    - future = {id_telegram:[
+        hora_acutal,
+        hora_acutal + tiempo_noti
+    ]}
+
+- sacarPrecio.py -> saca el precio del UBI
+    - Si el precio mensual es mayor al ideal, manda el mensaje
+
+- newCrypto.py -> (coin_min_max) Se fija si la moneda está por encima o por debajo del minimo y maximo y te manda un mensaje 
+
+
+
+TXTs:
+
+
+DATABASE:
+get_user_id_from_telegram_id -> (SELECT usuario.ID FROM usuario WHERE usuario.telegram_id = {})
+
+- **Datos.txt -> Datos de cada persona. 
+    - {id_telegram:[
+        gas_requerido, 
+        ubi_mensual, 
+        tiempo_noti, 
+        confirmacion_reset,
+        allow_graphic,
+        info_state,
+        tipo_gas, -> CHECK (safe, medium, fast)
+        cant_dias_grafico]}
+
+
+    - INSERT INTO "main"."datos"
+      ("FK_usuario", "gas_requerido", "ubi_mensual", "tiempo_noti", "confirmation_reset", "allow_graphic", "info_state", "tipo_gas", "cant_dias_grafico")
+      VALUES ((SELECT usuario.ID FROM usuario WHERE usuario.telegram_id = {}), 100, 150, 60, 0, 0, 1, 'safe', 30);
+
+- **Contador.txt -> cantidad de cryptos que tenes en el portfolio y la cuenta de lo que te mandó
+    - contador = {id_telegram:[
+        contador,
+        cant_crypto
+    ]}
+
+- **datosCrypto.txt -> id con las crypto que tienen y minmax
+    - datosCrypto = {id_telegram:{
+        coin:[min,max],
+        coin2:[min,max]
+    }}
+
+- **gente.txt -> info de la gente
+    - gente = {id_telegram: NYAP}
+
+- **resultados.txt -> gases bajo, medio, alto
+    - resultados = [bajo, medio, alto]
+
+- **todasCrypto.txt -> todas las crypto que alguna vez se pidieron
+    - todasCrypto = [crypto1, crypto2]
+
+- **ubiPrice.txt -> precio del ubi
+
+
+CAMBIOS:
+- **allow_graphic:
+    - cambiar nombre
+    - automaticamente togglear entre enable o disable en base a estado actual
+
+- **info_on/info_off
+    - cambiar a toggle_messages
+    - automaticamente togglear entre enable o disable en base a estado actual
+
+- datos.txt
+    - ubi_mensual y tiempo_noti a INT
+    
+- newCrypto.py -> primero fijarse si es hora de mandarle a alguien, despues hacer el request    
